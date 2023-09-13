@@ -7,7 +7,7 @@ class Solution {
     }
 
 
-
+   
     // self way
 public:
     int singleNumber(vector<int>& nums) {
