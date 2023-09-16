@@ -20,3 +20,22 @@ public:
         return result;
     }
 };
+
+
+
+
+
+//answer
+class Solution {
+public:
+    int titleToNumber(string columnTitle) {
+        int result = 0;
+        int ex = 1;
+        for(int i = columnTitle.size()-1; i >= 0; i --){
+            int k = columnTitle[i] -'A' +1;
+            result += k * ex;
+            ex *= 26;
+        }
+        return result;
+    }
+};
