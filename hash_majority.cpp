@@ -10,7 +10,6 @@ public:
                 appears = line[i];
                 max = i;
             }
-
         }
         return max;
     }
