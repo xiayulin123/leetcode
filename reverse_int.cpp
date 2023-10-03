@@ -9,7 +9,6 @@ public:
             }
             if(result < (-214748364) || (result == -214748364 && tem < -8)){
                 return 0;
-
             }
             result = result*10 + tem;
             x = x / 10;
