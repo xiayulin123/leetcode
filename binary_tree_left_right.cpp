@@ -23,8 +23,5 @@ public:
         arr.push_back(head->val);
         dig(head->left, arr);
         dig(head->right, arr);
-
-        
     }
-    
 };

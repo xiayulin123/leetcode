@@ -9,7 +9,6 @@ public:
         for(int i = 0; i < rows; i++){
             row_arr.clear();
             col_arr.clear();
-
             for(int j =0; j<columns;j++){
                 if(row_arr.count(matrix[i][j])){
                     return false;
