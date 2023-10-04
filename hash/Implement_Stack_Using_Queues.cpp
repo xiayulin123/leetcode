@@ -2,9 +2,7 @@ class MyStack {
     queue<int> list;
 public:
     MyStack() {
-
     }
-    
     void push(int x) {
         int n = list.size();
         list.push(x);
@@ -13,17 +11,14 @@ public:
             list.pop();
         }
     }
-    
     int pop() {
         int i = list.front();
         list.pop();
         return i;
     }
-    
     int top() {
         return list.front();
     }
-    
     bool empty() {
         return list.empty();
     }

@@ -27,7 +27,6 @@ public:
             }
             sum = sum+carry;
             carry = sum/10;
-            
             ListNode *tmp = new ListNode(sum%10);
             current->next = tmp;
             current = tmp;
