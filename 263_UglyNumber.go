@@ -17,3 +17,18 @@ func isUgly(n int) bool {
 
     return n == 1
 }
+
+
+func isUgly(n int) bool {
+    if n == 0 {
+        return false
+    }
+    var factors = []int{2, 3, 5}
+    for _, v := range factors {
+        for n % v == 0 {
+            n /= v
+        }
+    }
+
+    return n == 1
+}
