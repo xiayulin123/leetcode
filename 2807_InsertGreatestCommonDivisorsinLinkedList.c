@@ -6,27 +6,29 @@
  * };
  */
 int findGCD(int a, int b){
-    int tmp = a;
-    if(a > b) tmp = b;
-    while(tmp > 0){
-        if(a % tmp == 0 && b % tmp == 0) return tmp;
-        tmp--;
+    while (b != 0) {
+        int tmp = a % b;
+        a = b;
+        b = tmp;
     }
-    return 1;
+    return a;
 }
 struct ListNode* insertGreatestCommonDivisors(struct ListNode* head) {
+    if (!head || !head->next) return head;
     struct ListNode* prev = head;
-    struct ListNode* after = head;
+    struct ListNode* after = head->next;
 
-    while(after -> next != NULL){
+    while(after != NULL){
         struct ListNode* tmp = (struct ListNode*)malloc(sizeof(struct ListNode));
 
-        after = after->next;
         int val = findGCD(prev->val, after->val);
         tmp-> val = val;
+
         prev->next = tmp;
         tmp->next = after;
-        prev = prev->next->next;
+
+        prev = after;
+        after = after->next;
     }
     return head;
 
