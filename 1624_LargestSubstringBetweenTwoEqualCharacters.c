@@ -20,3 +20,19 @@ int maxLengthBetweenEqualCharacters(char* s) {
     }
     return ans == -1 ? -1 : ans-2 ;
 }
+
+
+int maxLengthBetweenEqualCharacters(char* s) {
+    int count[26];
+    memset(count, -1, sizeof(count));
+    int ans = -1;
+
+    for(int right = 0; s[right]; right++){
+        if(count[s[right] - 'a'] == -1){
+            count[s[right] - 'a'] = right;
+        } else {
+            ans = fmax(ans, right - count[s[right] - 'a'] + 1);
+        }
+    }
+    return ans == -1 ? -1 : ans - 2;
+}
