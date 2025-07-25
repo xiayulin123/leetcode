@@ -1,8 +1,8 @@
 /**
  * Note: The returned array must be malloced, assume caller calls free().
  */
-static int cmp(const void *pa, const void *pb) {
-    return *(int *)pa - *(int *)pb;
+static int cmp(const void *a, const void *b) {
+    return *(int *)a - *(int *)b;
 }
 
 int check(int *arr, int arrSize, int target) {
