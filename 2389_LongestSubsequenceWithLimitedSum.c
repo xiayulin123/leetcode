@@ -1,34 +1,41 @@
 /**
  * Note: The returned array must be malloced, assume caller calls free().
  */
-static int cmp(const void *a, const void *b) {
-    return *(int *)a - *(int *)b;
-}
-
-int check(int *arr, int arrSize, int target) {
-    int low = 1, high = arrSize;
-    while (low < high) {
-        int mid = low + (high - low) / 2;
-        if (arr[mid] > target) {
-            high = mid;
-        } else {
-            low = mid + 1;
-        }
-    }
-    return low;
+static int cmp(const void *pa, const void *pb) {
+    return *(int *)pa - *(int *)pb;
 }
 
 int* answerQueries(int* nums, int numsSize, int* queries, int queriesSize, int* returnSize) {
     qsort(nums, numsSize, sizeof(int), cmp);
-    int f[numsSize + 1];
-    f[0] = 0;
-    for (int i = 0; i < numsSize; i++) {
-        f[i + 1] = f[i] + nums[i];
+
+    int* new = malloc((numsSize) * sizeof(int));
+    memset(new, 0, (numsSize) * sizeof(int)); 
+
+    for(int i = 0; i < numsSize; i++){
+        if(i == 0){
+            new[i] = nums[i];
+        } else {
+            new[i] = new[i-1] + nums[i];
+        }
     }
-    int *answer = (int *)calloc(sizeof(int), queriesSize);
-    for (int i = 0; i < queriesSize; i++) {
-        answer[i] = check(f, numsSize + 1, queries[i]) - 1;
-    }
+    int* ans = malloc((queriesSize) * sizeof(int));
+    memset(ans, 0, (queriesSize) * sizeof(int)); 
     *returnSize = queriesSize;
-    return answer;
+    for(int i = 0; i < queriesSize; i++){
+        int left = 0;
+        int right = numsSize - 1;
+        while(left <= right){
+            int mid = left + (right - left) / 2;
+           
+            if(new[mid] <= queries[i]){
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+        
+        ans[i] = left;
+    }
+    return ans;
+    
 }
