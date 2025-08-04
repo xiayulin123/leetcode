@@ -8,6 +8,7 @@ int* finalPrices(int* prices, int pricesSize, int* returnSize) {
     int top = -1;
     int left = 0;
     for(int i = 0; i < pricesSize; i++){
+        ans[i] = prices[i];
         left++;
         int tmp = prices[i];
         while(top >= 0 && tmp <= prices[st[top]]){
@@ -16,10 +17,6 @@ int* finalPrices(int* prices, int pricesSize, int* returnSize) {
             left--;
         }
         st[++top] = i;
-    }
-    for(int i = 0; i < left; i++){
-        ans[st[top]] = prices[st[top]];
-        top--;
     }
     return ans;
 }
